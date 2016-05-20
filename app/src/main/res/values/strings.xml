@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Spokèd</string>
+    <string name="action_settings">Settings</string>
+    <string name="sentence_hint">Enter text here</string>
+    <string name="menu_settings">Settings</string>
+    <string name="speak_button">Speak</string>
+    <string name="clear_button">Clear</string>
+    <string name="stop_button">Stop</string>
+    <string name="add_button">+</string>
+    <string name="default_sentence">A default sentence</string>
+</resources>
