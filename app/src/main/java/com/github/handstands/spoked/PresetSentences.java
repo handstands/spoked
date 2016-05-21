@@ -1,5 +1,7 @@
 package com.github.handstands.spoked;
 
+import android.annotation.TargetApi;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -75,7 +77,7 @@ public class PresetSentences extends AppCompatActivity implements OnClickListene
 
                 String sentenceText = null;
                 if (sentence != null) {
-                    sentenceText = sentence.getText().toString();
+                    sentenceText = sentence.getText().toString().replace("\n", "");
                 }
                 if(sentenceText != null && !sentenceText.isEmpty()) {
                     boolean alreadyIn = false;
@@ -167,7 +169,12 @@ public class PresetSentences extends AppCompatActivity implements OnClickListene
     }
 
     private void speakWords(String speech) {
-        myTTS.speak(speech, TextToSpeech.QUEUE_FLUSH, null);
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            myTTS.speak(speech, TextToSpeech.QUEUE_FLUSH, null, null);
+        }
+        else {
+            myTTS.speak(speech, TextToSpeech.QUEUE_FLUSH, null);
+        }
     }
 
     private void populateList(String[] values) {
@@ -244,9 +251,15 @@ public class PresetSentences extends AppCompatActivity implements OnClickListene
     }
 
     public void onInit(int initStatus) {
+        Locale l;
         if (initStatus == TextToSpeech.SUCCESS) {
-            Locale l = Locale.getDefault();
-            Log.d(TAG, Locale.getDefault().toString());
+            if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                l = myTTS.getDefaultVoice().getLocale();
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2){
+                l = myTTS.getDefaultLanguage();
+            } else {
+                l = Locale.getDefault();
+            }
             int a = myTTS.isLanguageAvailable(l);
             switch(a) {
                 case TextToSpeech.LANG_NOT_SUPPORTED:

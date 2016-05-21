@@ -2,10 +2,11 @@
 
 This is a very basic app that, by virtue of the inbuilt Text-to-Speech (TTS) libraries, allows you to, well, speak. Type in whatever you want to say, tap the `Speak` button, and it'll read it out for you.
 It's intended audience was originally non-verbal people, or those with a speech impediment, but anyone who would find such a thing an useful addition is more than welcome to use it.
-Keep in mind that this is quite unpolished. Especially with regard to the UI there's a substantial chance for shenanigans. So be aware of that. One thing in particular is that it presently does strange things in landscape mode, so keep it in portrait mode for now.
+Keep in mind that this is quite unpolished. Especially with regard to the UI there's a substantial chance for shenanigans. So be aware of that. The app should now play nice regardless of device orientation but I can't yet guarantee it's free from weirdness.
 
 ##Usage
-* The app tries to use the TTS based on your device's locale. If that's not available, it tries the US version. 
+* For Android 5.0 and up it tries to use the device's default speech engine, or the US version if that isn't available.
+* For earlier versions the app tries to use the TTS based on your device's locale. If that's not available, it tries the US version. 
 * Enter what you want to say in the box where it says `Enter text here` and tap the `Speak` button. 
 * Press the `Stop` button while it's speaking to have it stopped immediately.
 * The `Clear` button empties the entry box. Doing so while it's still speaking will have no effect. In other words, you can delete whatever you wrote right after you tapped `Speak` and start writing the next thing. It'll keep on reading out your message.
